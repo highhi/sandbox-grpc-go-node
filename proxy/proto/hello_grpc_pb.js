@@ -28,8 +28,7 @@ function deserialize_HelloRequest(buffer_arg) {
 
 
 var GreeterService = exports.GreeterService = {
-  // Sends a greeting
-sayHello: {
+  sayHello: {
     path: '/Greeter/SayHello',
     requestStream: false,
     responseStream: false,

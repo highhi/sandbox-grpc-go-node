@@ -1,5 +1,6 @@
-const express = require('express');
-const { sayHello } = require('../client/helloClient')
+import express from 'express'
+import { ParamsDictionary } from 'express-serve-static-core';
+import { sayHello } from '../client/helloClient'
 
 const app = express();
 
@@ -7,7 +8,7 @@ app.get('/', (_, res) => {
   res.json({ health: "ok" });
 });
 
-app.get('/hello', async (request, response) => {
+app.get<ParamsDictionary, any, any, { name?: string }>('/hello', async (request, response) => {
     const { name } = request.query;
 
     try {

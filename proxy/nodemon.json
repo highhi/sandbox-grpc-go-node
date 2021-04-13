@@ -1,0 +1,5 @@
+{
+  "watch": ["client", "entrypoint", "proto"],
+  "ext": "ts",
+  "exec": "ts-node ./entrypoint/main.ts"
+}

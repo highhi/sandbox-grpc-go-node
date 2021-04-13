@@ -1,8 +1,8 @@
-const { credentials } = require('@grpc/grpc-js');
-const { GreeterClient } = require('../proto/hello_grpc_pb');
-const { HelloRequest } = require('../proto/hello_pb');
+import { credentials } from '@grpc/grpc-js'
+import { GreeterClient } from '../proto/hello_grpc_pb'
+import { HelloReply, HelloRequest } from '../proto/hello_pb'
 
-exports.sayHello = ({ name = "World" }) => {
+export const sayHello = ({ name = "World" }: { name?: string }): Promise<HelloReply.AsObject> => {
   const Request = new HelloRequest();
   const client = new GreeterClient(
     'localhost:8080',
