@@ -1,0 +1,35 @@
+version: "3"
+
+services:
+  pg:
+    image: postgres:11.8
+    container_name: grpc_go_node_pg
+    environment:
+      - POSTGRES_USER=grpc_go_node
+      - POSTGRES_PASSWORD=grpc_go_node
+      - POSTGRES_DB=grpc_go_node_dev
+    ports:
+      - 5432:5432
+    volumes:
+      - .volumes/postgresql/data:/var/lib/postgresql/data
+
+  app:
+    build:
+      context: ./
+      dockerfile: dockerfiles/go/Dockerfile
+    container_name: grpc_go_node_app
+    ports:
+      - 8080:8080
+    volumes:
+      - ./app:/go/src/github.com/highhi/grpc-go/app
+    command: air
+    entrypoint:
+      - dockerize
+      - -timeout
+      - 60s
+      - -wait
+      - tcp://pg:5432
+    depends_on:
+      - pg
+    environment:
+      - POSTGRESQL_URL=postgres://grpc_go_node:grpc_go_node@pg:5432/grpc_go_node_dev?sslmode=disable
