@@ -1,18 +1,18 @@
 import { credentials } from '@grpc/grpc-js'
-import { GreeterClient } from '../proto/hello_grpc_pb'
-import { HelloReply, HelloRequest } from '../proto/hello_pb'
+import { GreeterClient } from '../protobuf/hello_grpc_pb'
+import { HelloReply, HelloRequest } from '../protobuf/hello_pb'
 
 export const sayHello = ({ name = "World" }: { name?: string }): Promise<HelloReply.AsObject> => {
-  const Request = new HelloRequest();
+  const request = new HelloRequest();
   const client = new GreeterClient(
     'localhost:8080',
     credentials.createInsecure(),
   );
 
-  Request.setName(name);
+  request.setName(name);
 
   return new Promise((resolve, reject) => {
-    client.sayHello(Request, (error, response) => {
+    client.sayHello(request, (error, response) => {
       if (error) {
         console.error(error);
         reject({
