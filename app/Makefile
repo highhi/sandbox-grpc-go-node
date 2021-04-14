@@ -8,4 +8,4 @@ protogen:
 
 .PHONY: health
 health:
-		docker-compose exec app grpcurl -plaintext -d '{ "name": "world" }' localhost:8080 Greeter.SayHello
+		docker-compose exec app grpcurl -plaintext localhost:8080 Health.Check

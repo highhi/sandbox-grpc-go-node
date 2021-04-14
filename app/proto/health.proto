@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+option go_package = "github.com/highhi/proto";
+
+service Health {
+  rpc Check (HealthRequest) returns (HealthReply) {}
+}
+
+message HealthRequest {
+  string name = 1;
+}
+
+message HealthReply {
+  string message = 1;
+}
