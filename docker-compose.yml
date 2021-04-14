@@ -7,7 +7,7 @@ services:
     environment:
       - POSTGRES_USER=grpc_go_node
       - POSTGRES_PASSWORD=grpc_go_node
-      - POSTGRES_DB=grpc_go_node_dev
+      - POSTGRES_DB=grpc_db
     ports:
       - 5432:5432
     volumes:
@@ -32,4 +32,4 @@ services:
     depends_on:
       - pg
     environment:
-      - POSTGRESQL_URL=postgres://grpc_go_node:grpc_go_node@pg:5432/grpc_go_node_dev?sslmode=disable
+      - POSTGRESQL_URL=postgres://grpc_go_node:grpc_go_node@pg:5432/grpc_db?sslmode=disable
