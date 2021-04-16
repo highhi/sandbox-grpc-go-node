@@ -33,3 +33,4 @@ services:
       - pg
     environment:
       - POSTGRESQL_URL=postgres://grpc_go_node:grpc_go_node@pg:5432/grpc_db?sslmode=disable
+  
