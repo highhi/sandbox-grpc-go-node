@@ -1,5 +1,6 @@
 {
-  "watch": ["client", "entrypoint", "proto"],
+  "watch": ["./src"],
+  "ignore": ["node_modules", ".vscode"],
   "ext": "ts",
-  "exec": "ts-node ./entrypoint/main.ts"
+  "exec": "ts-node ./src/entrypoint/main.ts"
 }
