@@ -1,5 +1,6 @@
 import exp from 'express'
 import { ParamsDictionary } from 'express-serve-static-core';
+import { HttpError } from 'http-errors';
 import { sayHello } from '../client/helloClient'
 import { authMiddleware } from './middleware/auth'
 
@@ -27,8 +28,8 @@ export const handler = (app: exp.Application) => {
     res.status(404).send('Sorry cant find that!');
   });
 
-  app.use((err: Error, _req: exp.Request, res: exp.Response, _next: exp.NextFunction) => {
+  app.use((err: HttpError, _req: exp.Request, res: exp.Response, _next: exp.NextFunction) => {
     console.error(err.stack);
-    res.status(500).send(err.message);
+    res.status(err.status || 500).send(err.message);
   });
 }

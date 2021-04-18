@@ -1,7 +1,7 @@
 import React from 'react'
-import { User } from '../domain/user'
+import { firebase } from '../infra/firebase'
 
 export const AuthContext = React.createContext<{
-  currentUser?: User,
+  currentUser?: firebase.User,
   authenticating: boolean
 }>({ currentUser: undefined, authenticating: false })
