@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import { AuthContext } from '../../../contexts/Auth'
-import { User } from '../../../domain/user'
 import { firebase } from '../../../infra/firebase'
 
 export const AuthProvider: React.FC = (props) => {

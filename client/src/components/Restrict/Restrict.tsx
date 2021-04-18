@@ -8,7 +8,6 @@ export const Restrict: React.FC = (props) => {
 
   useEffect(() => {
     if (currentUser == null && !authenticating) {
-      console.log(currentUser)
       router.replace('/')
     }
   }, [currentUser, authenticating])

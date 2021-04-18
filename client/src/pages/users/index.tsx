@@ -5,26 +5,19 @@ import { User } from '../../interfaces'
 import { sampleUserData } from '../../utils/sample-data'
 import Layout from '../../components/Layout'
 import List from '../../components/List'
-import React, { useCallback, useContext } from 'react'
-import { AuthContext } from '../../contexts/Auth'
+import React, { useCallback } from 'react'
+import { useAppContext } from '../../hooks/appContext'
 
 type Props = {
   items: User[]
 }
 
 const WithStaticProps = ({ items }: Props) => {
-  const { currentUser } = useContext(AuthContext)
+  const { currentUser, httpClient } = useAppContext()
+  
   const onClick = useCallback(async (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault()
-    if (currentUser == null) return
-    const token = await currentUser.getIdToken()
-    axios({
-      url: 'http://localhost:9000/hello',
-      method: 'get',
-      headers: {
-        Authorization: `Bearer ${token}`
-      }
-    }).then((res) => {
+    httpClient.get('http://localhost:9000/hello').then((res) => {
       console.log(res.data)
     }).catch((err) => {
       console.error(err)

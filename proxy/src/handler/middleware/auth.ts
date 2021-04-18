@@ -5,7 +5,7 @@ import createError from 'http-errors'
 export const authMiddleware = async (req: express.Request, _res: express.Response, next: express.NextFunction) => {
   const authHeaderValue = req.header('Authorization')
 
-  if (authHeaderValue == null) {
+  if (!authHeaderValue) {
     return next((createError(403)))
   }
 
