@@ -3,14 +3,12 @@ import { AuthContext } from '../../../contexts/Auth'
 import { firebase } from '../../../infra/firebase'
 
 export const AuthProvider: React.FC = (props) => {
-  const [currentUser, setCurrentUser] = useState<firebase.User | undefined>(undefined)
+  const [currentUser, setCurrentUser] = useState<firebase.User | null>(null)
   const [authenticating, setAuthenticating] = useState(true)
 
   useEffect(() => {
     firebase.auth().onAuthStateChanged((user) => {
-      if (user != null && user.displayName != null && user.email != null) {
-        setCurrentUser(user)
-      }
+      setCurrentUser(user)
       setAuthenticating(false)
     }, (error) => {
       console.error(error)

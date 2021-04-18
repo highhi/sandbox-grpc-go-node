@@ -5,14 +5,11 @@ import { sayHello } from '../client/helloClient'
 import { authMiddleware } from './middleware/auth'
 
 export const handler = (app: exp.Application) => {
-
-  app.get('/', (_, res) => {
+  app.get('/', (_, res, next: exp.NextFunction) => {
     res.json({ health: "ok" });
   });
-  
-  app.use(authMiddleware)
-  
-  app.get<ParamsDictionary, any, any, { name?: string }>('/hello', async (request, response) => {
+
+  app.get<ParamsDictionary, any, any, { name?: string }>('/hello', authMiddleware, async (request, response) => {
     const { name } = request.query;
 
     try {

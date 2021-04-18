@@ -5,7 +5,7 @@ import { HttpClientContext } from "../contexts/HttpClient";
 import { firebase } from '../infra/firebase'
 
 type UseAppContext = {
-  currentUser?: firebase.User,
+  currentUser: firebase.User | null,
   httpClient: AxiosInstance
 }
 
