@@ -1,16 +1,18 @@
-import { Request, Router, Response } from 'express'
+import { Router } from 'express'
 import { authMiddleware } from './middleware/auth'
 import { wrap } from './wrap'
 import * as task from '../client/task'
-import { ParamsDictionary } from 'express-serve-static-core'
-
-type Req = Request<ParamsDictionary, any, { title: string; content: string }, any>
 
 export const tasksHandler = Router()
 
 tasksHandler.use(authMiddleware)
 
-tasksHandler.post('/create', wrap(async (req: Req, res: Response) => {
+tasksHandler.get('/', wrap(async (req, res) => {
+  const { tasksList } = await task.get({ uid: req.context.uid! })
+  res.status(200).json({ tasks: tasksList })
+}))
+
+tasksHandler.post('/create', wrap(async (req, res) => {
   const { uid } = req.context
   const { title, content } = req.body
 
