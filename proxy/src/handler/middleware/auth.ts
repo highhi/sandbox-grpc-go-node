@@ -1,9 +1,9 @@
-import express from 'express'
+import { Request, NextFunction } from 'express-serve-static-core'
 import { verifyIdToken } from '../../infra/admin'
 import createError from 'http-errors'
 import { wrap } from '../wrap'
 
-export const authMiddleware = wrap(async (req: express.Request, _res: express.Response, next: express.NextFunction) => {
+export const authMiddleware = wrap(async (req: Request, _res: any, next: NextFunction) => {
   const authHeaderValue = req.header('Authorization')
 
   if (!authHeaderValue) {

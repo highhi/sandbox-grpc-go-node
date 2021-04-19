@@ -1,6 +1,6 @@
-import express from 'express'
+import { Request, NextFunction } from 'express-serve-static-core'
 
-export const context = (req: express.Request, _res: express.Response, next: express.NextFunction) => {
+export const context = (req: Request, _res: any, next: NextFunction) => {
   req.context = {}
   next()
 }
