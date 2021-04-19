@@ -1,8 +1,8 @@
 package handler
 
 import (
-	"github.com/highhi/grpc-go/app/infra/persistence"
-	pb "github.com/highhi/grpc-go/app/protobuf"
+	"github.com/highhi/sandbox-grpc-go-node/app/infra/persistence"
+	pb "github.com/highhi/sandbox-grpc-go-node/app/protobuf"
 	"github.com/jmoiron/sqlx"
 	"google.golang.org/grpc"
 )

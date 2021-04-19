@@ -6,8 +6,8 @@ import (
 
 	grpc_middleware "github.com/grpc-ecosystem/go-grpc-middleware"
 	grpc_zap "github.com/grpc-ecosystem/go-grpc-middleware/logging/zap"
-	"github.com/highhi/grpc-go/app/handler"
-	"github.com/highhi/grpc-go/app/infra/persistence"
+	"github.com/highhi/sandbox-grpc-go-node/app/handler"
+	"github.com/highhi/sandbox-grpc-go-node/app/infra/persistence"
 	"go.uber.org/zap"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/reflection"

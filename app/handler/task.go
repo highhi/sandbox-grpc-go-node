@@ -4,8 +4,8 @@ import (
 	"context"
 	"time"
 
-	"github.com/highhi/grpc-go/app/infra/persistence"
-	pb "github.com/highhi/grpc-go/app/protobuf"
+	"github.com/highhi/sandbox-grpc-go-node/app/infra/persistence"
+	pb "github.com/highhi/sandbox-grpc-go-node/app/protobuf"
 	"google.golang.org/protobuf/types/known/timestamppb"
 )
 

@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/highhi/grpc-go/app/config"
+	"github.com/highhi/sandbox-grpc-go-node/app/config"
 
 	"github.com/jmoiron/sqlx"
 	_ "github.com/lib/pq" // PostgreSQL Driver

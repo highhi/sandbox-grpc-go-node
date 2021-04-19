@@ -2,7 +2,7 @@ syntax = "proto3";
 
 import "google/protobuf/timestamp.proto";
 
-option go_package = "github.com/highhi/proto";
+option go_package = "github.com/highhi/sandbox-grpc-go-node/app/proto";
 
 service Tasks {
   rpc CreateTask (CreateTaskRequest) returns (CreateTaskReply) {}

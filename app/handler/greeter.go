@@ -3,7 +3,7 @@ package handler
 import (
 	"context"
 
-	pb "github.com/highhi/grpc-go/app/protobuf"
+	pb "github.com/highhi/sandbox-grpc-go-node/app/protobuf"
 )
 
 type greeterHandler struct {

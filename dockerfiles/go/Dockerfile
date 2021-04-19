@@ -18,6 +18,6 @@ RUN wget https://github.com/jwilder/dockerize/releases/download/$DOCKERIZE_VERSI
 
 EXPOSE 8080
 
-ADD ./app /go/src/github.com/highhi/grpc-go/app
+ADD ./app /go/src/github.com/highhi/sandbox-grpc-go-node/app
 
-WORKDIR /go/src/github.com/highhi/grpc-go/app
+WORKDIR /go/src/github.com/highhi/sandbox-grpc-go-node/app

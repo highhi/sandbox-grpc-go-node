@@ -1,4 +1,4 @@
-module github.com/highhi/grpc-go/app
+module github.com/highhi/sandbox-grpc-go-node/app
 
 go 1.15
 

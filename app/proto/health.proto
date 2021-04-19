@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-option go_package = "github.com/highhi/proto";
+option go_package = "github.com/highhi/sandbox-grpc-go-node/app/proto";
 
 service Health {
   rpc Check (HealthRequest) returns (HealthReply) {}

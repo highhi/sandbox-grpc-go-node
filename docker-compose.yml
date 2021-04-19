@@ -21,7 +21,7 @@ services:
     ports:
       - 8080:8080
     volumes:
-      - ./app:/go/src/github.com/highhi/grpc-go/app
+      - ./app:/go/src/github.com/highhi/sandbox-grpc-go-node/app
     command: air
     entrypoint:
       - dockerize

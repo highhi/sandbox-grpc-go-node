@@ -3,7 +3,7 @@ package persistence
 import (
 	"log"
 
-	pb "github.com/highhi/grpc-go/app/protobuf"
+	pb "github.com/highhi/sandbox-grpc-go-node/app/protobuf"
 	"github.com/jmoiron/sqlx"
 )
 
