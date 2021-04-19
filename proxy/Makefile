@@ -1,4 +1,4 @@
-OUTPUT=./protobuf
+OUTPUT=./src/protobuf
 NPM_BIN=./node_modules/.bin
 GRPC_TOOL=$(NPM_BIN)/grpc_tools_node_protoc
 TYPESCRIPT_PLUGIN=protoc-gen-ts=$(NPM_BIN)/protoc-gen-ts

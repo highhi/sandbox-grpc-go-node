@@ -3,9 +3,10 @@ import { ParamsDictionary } from 'express-serve-static-core';
 import { HttpError } from 'http-errors';
 import { sayHello } from '../client/helloClient'
 import { authMiddleware } from './middleware/auth'
+import { tasksHandler } from './tasks';
 
 export const handler = (app: exp.Application) => {
-  app.get('/', (_, res, next: exp.NextFunction) => {
+  app.get('/', (_, res) => {
     res.json({ health: "ok" });
   });
 
@@ -20,6 +21,8 @@ export const handler = (app: exp.Application) => {
       response.status(500).json({ error });
     }
   });
+
+  app.use('/tasks', tasksHandler)
 
   app.use((_req, res, _next) => {
     res.status(404).send('Sorry cant find that!');

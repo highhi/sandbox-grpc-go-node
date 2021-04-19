@@ -1,8 +1,9 @@
 import express from 'express'
 import { verifyIdToken } from '../../infra/admin'
 import createError from 'http-errors'
+import { wrap } from '../wrap'
 
-export const authMiddleware = async (req: express.Request, _res: express.Response, next: express.NextFunction) => {
+export const authMiddleware = wrap(async (req: express.Request, _res: express.Response, next: express.NextFunction) => {
   const authHeaderValue = req.header('Authorization')
 
   if (!authHeaderValue) {
@@ -16,6 +17,7 @@ export const authMiddleware = async (req: express.Request, _res: express.Respons
     req.context.uid = uid
     next()
   } catch (err) {
-    next((createError(err)))
+    if (err.code) return next(createError(403))
+    next(err)
   }
-}
+})
