@@ -1,12 +1,14 @@
 package task
 
-import "time"
+import (
+	"github.com/golang/protobuf/ptypes/timestamp"
+)
 
 type Task struct {
-	ID        int    `db:"id"`
+	ID        int64  `db:"id"`
 	UID       string `db:"uid"`
 	Title     string
 	Content   string
-	CreatedAt time.Time `db:"created_at"`
-	UpdatedAt time.Time `db:"updated_at"`
+	CreatedAt *timestamp.Timestamp `db:"created_at"`
+	UpdatedAt *timestamp.Timestamp `db:"updated_at"`
 }

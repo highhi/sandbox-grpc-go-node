@@ -1,9 +1,12 @@
 syntax = "proto3";
 
+import "google/protobuf/timestamp.proto";
+
 option go_package = "github.com/highhi/proto";
 
 service Tasks {
   rpc CreateTask (CreateTaskRequest) returns (CreateTaskReply) {}
+  rpc GetTasks (GetTasksRequest) returns (GetTasksReply) {}
 }
 
 message CreateTaskRequest {
@@ -13,4 +16,22 @@ message CreateTaskRequest {
 }
 
 message CreateTaskReply {
+}
+
+
+message GetTasksRequest {
+  string uid = 1;
+}
+
+message Task {
+  int32 id = 1;
+  string uid = 2;
+  string title = 3;
+  string content = 4;
+  google.protobuf.Timestamp createdAt = 5;
+  google.protobuf.Timestamp updatedAt = 6;
+}
+
+message GetTasksReply {
+  repeated Task tasks = 1;
 }
