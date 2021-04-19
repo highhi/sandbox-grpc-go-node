@@ -3,14 +3,14 @@ syntax = "proto3";
 option go_package = "github.com/highhi/proto";
 
 service Tasks {
-  rpc Create (CreateRequest) returns (CreateReply) {}
+  rpc CreateTask (CreateTaskRequest) returns (CreateTaskReply) {}
 }
 
-message CreateRequest {
+message CreateTaskRequest {
   string uid = 1;
   string title = 2;
   string content = 3;
 }
 
-message CreateReply {
+message CreateTaskReply {
 }

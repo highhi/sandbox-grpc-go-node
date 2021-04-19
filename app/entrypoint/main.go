@@ -1,33 +1,17 @@
 package main
 
 import (
-	"context"
 	"log"
 	"net"
 
 	grpc_middleware "github.com/grpc-ecosystem/go-grpc-middleware"
 	grpc_zap "github.com/grpc-ecosystem/go-grpc-middleware/logging/zap"
-	pb "github.com/highhi/grpc-go/app/protobuf"
+	"github.com/highhi/grpc-go/app/handler"
+	"github.com/highhi/grpc-go/app/infra/persistence"
 	"go.uber.org/zap"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/reflection"
 )
-
-type greeterServer struct {
-	pb.UnimplementedGreeterServer
-}
-
-type healthServer struct {
-	pb.UnimplementedHealthServer
-}
-
-func (s *greeterServer) SayHello(ctx context.Context, in *pb.HelloRequest) (*pb.HelloReply, error) {
-	return &pb.HelloReply{Message: "Hello again"}, nil
-}
-
-func (s *healthServer) Check(ctx context.Context, in *pb.HealthRequest) (*pb.HealthReply, error) {
-	return &pb.HealthReply{Message: "OK"}, nil
-}
 
 func main() {
 	lis, err := net.Listen("tcp", ":8080")
@@ -48,8 +32,7 @@ func main() {
 		),
 	))
 
-	pb.RegisterGreeterServer(s, &greeterServer{})
-	pb.RegisterHealthServer(s, &healthServer{})
+	handler.Initialize(s, persistence.NewDB())
 
 	log.Println("起動")
 
