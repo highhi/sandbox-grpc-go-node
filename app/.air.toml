@@ -1,0 +1,15 @@
+root = "."
+tmp_dir = "tmp"
+
+[build]
+cmd = "go build -o ./tmp/api ./entrypoint"
+bin = "tmp/api -mode local"
+include_ext = ["go", "tpl", "tmpl", "html"]
+exclude_dir = ["vendor", "tmp"]
+include_dir = []
+exclude_file = []
+exclude_unchanged = true
+delay = 100 # ms
+stop_on_error = true
+send_interrupt = false
+kill_delay = 500 # ms
