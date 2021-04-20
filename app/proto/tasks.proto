@@ -24,14 +24,14 @@ message GetTasksRequest {
 }
 
 message Task {
-  int32 id = 1;
-  string uid = 2;
-  string title = 3;
-  string content = 4;
-  google.protobuf.Timestamp createdAt = 5;
-  google.protobuf.Timestamp updatedAt = 6;
+  int32 ID = 1;
+  string UID = 2;
+  string Title = 3;
+  string Content = 4;
+  google.protobuf.Timestamp CreatedAt = 5;
+  google.protobuf.Timestamp UpdatedAt = 6;
 }
 
 message GetTasksReply {
-  repeated Task tasks = 1;
+  repeated Task Tasks = 1;
 }

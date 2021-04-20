@@ -4,9 +4,9 @@ import (
 	"context"
 	"time"
 
+	"github.com/highhi/sandbox-grpc-go-node/app/domain/task"
 	"github.com/highhi/sandbox-grpc-go-node/app/infra/persistence"
 	pb "github.com/highhi/sandbox-grpc-go-node/app/protobuf"
-	"google.golang.org/protobuf/types/known/timestamppb"
 )
 
 type taskHandler struct {
@@ -19,10 +19,10 @@ func newTaskHandler(r *persistence.TaskRepository) *taskHandler {
 }
 
 func (h *taskHandler) CreateTask(ctx context.Context, in *pb.CreateTaskRequest) (*pb.CreateTaskReply, error) {
-	now := timestamppb.New(time.Now())
+	now := time.Now()
 
-	err := h.r.Create(pb.Task{
-		Uid:       in.GetUid(),
+	err := h.r.Create(task.Task{
+		UID:       in.GetUid(),
 		Title:     in.GetTitle(),
 		Content:   in.GetContent(),
 		CreatedAt: now,
@@ -41,5 +41,5 @@ func (h *taskHandler) GetTasks(ctx context.Context, in *pb.GetTasksRequest) (*pb
 	if err != nil {
 		return nil, err
 	}
-	return &pb.GetTasksReply{Tasks: tasks}, nil
+	return &pb.GetTasksReply{Tasks: task.ToPBList(tasks)}, nil
 }
