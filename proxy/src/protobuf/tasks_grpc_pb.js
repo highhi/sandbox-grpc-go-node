@@ -27,6 +27,50 @@ function deserialize_CreateTaskRequest(buffer_arg) {
   return tasks_pb.CreateTaskRequest.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
+function serialize_DeleteTaskReply(arg) {
+  if (!(arg instanceof tasks_pb.DeleteTaskReply)) {
+    throw new Error('Expected argument of type DeleteTaskReply');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_DeleteTaskReply(buffer_arg) {
+  return tasks_pb.DeleteTaskReply.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_DeleteTaskRequest(arg) {
+  if (!(arg instanceof tasks_pb.DeleteTaskRequest)) {
+    throw new Error('Expected argument of type DeleteTaskRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_DeleteTaskRequest(buffer_arg) {
+  return tasks_pb.DeleteTaskRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_GetTaskListReply(arg) {
+  if (!(arg instanceof tasks_pb.GetTaskListReply)) {
+    throw new Error('Expected argument of type GetTaskListReply');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_GetTaskListReply(buffer_arg) {
+  return tasks_pb.GetTaskListReply.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_GetTaskListRequest(arg) {
+  if (!(arg instanceof tasks_pb.GetTaskListRequest)) {
+    throw new Error('Expected argument of type GetTaskListRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_GetTaskListRequest(buffer_arg) {
+  return tasks_pb.GetTaskListRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
 function serialize_GetTaskReply(arg) {
   if (!(arg instanceof tasks_pb.GetTaskReply)) {
     throw new Error('Expected argument of type GetTaskReply');
@@ -47,28 +91,6 @@ function serialize_GetTaskRequest(arg) {
 
 function deserialize_GetTaskRequest(buffer_arg) {
   return tasks_pb.GetTaskRequest.deserializeBinary(new Uint8Array(buffer_arg));
-}
-
-function serialize_GetTasksReply(arg) {
-  if (!(arg instanceof tasks_pb.GetTasksReply)) {
-    throw new Error('Expected argument of type GetTasksReply');
-  }
-  return Buffer.from(arg.serializeBinary());
-}
-
-function deserialize_GetTasksReply(buffer_arg) {
-  return tasks_pb.GetTasksReply.deserializeBinary(new Uint8Array(buffer_arg));
-}
-
-function serialize_GetTasksRequest(arg) {
-  if (!(arg instanceof tasks_pb.GetTasksRequest)) {
-    throw new Error('Expected argument of type GetTasksRequest');
-  }
-  return Buffer.from(arg.serializeBinary());
-}
-
-function deserialize_GetTasksRequest(buffer_arg) {
-  return tasks_pb.GetTasksRequest.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
 function serialize_UpdateTaskReply(arg) {
@@ -117,16 +139,16 @@ var TasksService = exports.TasksService = {
     responseSerialize: serialize_GetTaskReply,
     responseDeserialize: deserialize_GetTaskReply,
   },
-  getTasks: {
-    path: '/Tasks/GetTasks',
+  getTaskList: {
+    path: '/Tasks/GetTaskList',
     requestStream: false,
     responseStream: false,
-    requestType: tasks_pb.GetTasksRequest,
-    responseType: tasks_pb.GetTasksReply,
-    requestSerialize: serialize_GetTasksRequest,
-    requestDeserialize: deserialize_GetTasksRequest,
-    responseSerialize: serialize_GetTasksReply,
-    responseDeserialize: deserialize_GetTasksReply,
+    requestType: tasks_pb.GetTaskListRequest,
+    responseType: tasks_pb.GetTaskListReply,
+    requestSerialize: serialize_GetTaskListRequest,
+    requestDeserialize: deserialize_GetTaskListRequest,
+    responseSerialize: serialize_GetTaskListReply,
+    responseDeserialize: deserialize_GetTaskListReply,
   },
   updateTask: {
     path: '/Tasks/UpdateTask',
@@ -138,6 +160,17 @@ var TasksService = exports.TasksService = {
     requestDeserialize: deserialize_UpdateTaskRequest,
     responseSerialize: serialize_UpdateTaskReply,
     responseDeserialize: deserialize_UpdateTaskReply,
+  },
+  deleteTask: {
+    path: '/Tasks/DeleteTask',
+    requestStream: false,
+    responseStream: false,
+    requestType: tasks_pb.DeleteTaskRequest,
+    responseType: tasks_pb.DeleteTaskReply,
+    requestSerialize: serialize_DeleteTaskRequest,
+    requestDeserialize: deserialize_DeleteTaskRequest,
+    responseSerialize: serialize_DeleteTaskReply,
+    responseDeserialize: deserialize_DeleteTaskReply,
   },
 };
 

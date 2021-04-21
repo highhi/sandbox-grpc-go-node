@@ -91,43 +91,43 @@ export namespace CreateTaskReply {
     }
 }
 
-export class GetTasksRequest extends jspb.Message { 
+export class GetTaskListRequest extends jspb.Message { 
     getUid(): string;
-    setUid(value: string): GetTasksRequest;
+    setUid(value: string): GetTaskListRequest;
 
     serializeBinary(): Uint8Array;
-    toObject(includeInstance?: boolean): GetTasksRequest.AsObject;
-    static toObject(includeInstance: boolean, msg: GetTasksRequest): GetTasksRequest.AsObject;
+    toObject(includeInstance?: boolean): GetTaskListRequest.AsObject;
+    static toObject(includeInstance: boolean, msg: GetTaskListRequest): GetTaskListRequest.AsObject;
     static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
     static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-    static serializeBinaryToWriter(message: GetTasksRequest, writer: jspb.BinaryWriter): void;
-    static deserializeBinary(bytes: Uint8Array): GetTasksRequest;
-    static deserializeBinaryFromReader(message: GetTasksRequest, reader: jspb.BinaryReader): GetTasksRequest;
+    static serializeBinaryToWriter(message: GetTaskListRequest, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): GetTaskListRequest;
+    static deserializeBinaryFromReader(message: GetTaskListRequest, reader: jspb.BinaryReader): GetTaskListRequest;
 }
 
-export namespace GetTasksRequest {
+export namespace GetTaskListRequest {
     export type AsObject = {
         uid: string,
     }
 }
 
-export class GetTasksReply extends jspb.Message { 
+export class GetTaskListReply extends jspb.Message { 
     clearTasksList(): void;
     getTasksList(): Array<Task>;
-    setTasksList(value: Array<Task>): GetTasksReply;
+    setTasksList(value: Array<Task>): GetTaskListReply;
     addTasks(value?: Task, index?: number): Task;
 
     serializeBinary(): Uint8Array;
-    toObject(includeInstance?: boolean): GetTasksReply.AsObject;
-    static toObject(includeInstance: boolean, msg: GetTasksReply): GetTasksReply.AsObject;
+    toObject(includeInstance?: boolean): GetTaskListReply.AsObject;
+    static toObject(includeInstance: boolean, msg: GetTaskListReply): GetTaskListReply.AsObject;
     static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
     static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-    static serializeBinaryToWriter(message: GetTasksReply, writer: jspb.BinaryWriter): void;
-    static deserializeBinary(bytes: Uint8Array): GetTasksReply;
-    static deserializeBinaryFromReader(message: GetTasksReply, reader: jspb.BinaryReader): GetTasksReply;
+    static serializeBinaryToWriter(message: GetTaskListReply, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): GetTaskListReply;
+    static deserializeBinaryFromReader(message: GetTaskListReply, reader: jspb.BinaryReader): GetTaskListReply;
 }
 
-export namespace GetTasksReply {
+export namespace GetTaskListReply {
     export type AsObject = {
         tasksList: Array<Task.AsObject>,
     }
@@ -221,6 +221,46 @@ export class UpdateTaskReply extends jspb.Message {
 }
 
 export namespace UpdateTaskReply {
+    export type AsObject = {
+    }
+}
+
+export class DeleteTaskRequest extends jspb.Message { 
+    getId(): number;
+    setId(value: number): DeleteTaskRequest;
+    getUid(): string;
+    setUid(value: string): DeleteTaskRequest;
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): DeleteTaskRequest.AsObject;
+    static toObject(includeInstance: boolean, msg: DeleteTaskRequest): DeleteTaskRequest.AsObject;
+    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+    static serializeBinaryToWriter(message: DeleteTaskRequest, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): DeleteTaskRequest;
+    static deserializeBinaryFromReader(message: DeleteTaskRequest, reader: jspb.BinaryReader): DeleteTaskRequest;
+}
+
+export namespace DeleteTaskRequest {
+    export type AsObject = {
+        id: number,
+        uid: string,
+    }
+}
+
+export class DeleteTaskReply extends jspb.Message { 
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): DeleteTaskReply.AsObject;
+    static toObject(includeInstance: boolean, msg: DeleteTaskReply): DeleteTaskReply.AsObject;
+    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+    static serializeBinaryToWriter(message: DeleteTaskReply, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): DeleteTaskReply;
+    static deserializeBinaryFromReader(message: DeleteTaskReply, reader: jspb.BinaryReader): DeleteTaskReply;
+}
+
+export namespace DeleteTaskReply {
     export type AsObject = {
     }
 }

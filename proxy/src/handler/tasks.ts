@@ -8,7 +8,7 @@ export const tasksHandler = Router()
 tasksHandler.use(authMiddleware)
 
 tasksHandler.get('/', wrap(async (req, res) => {
-  const { tasksList } = await client.get({ uid: req.context.uid! })
+  const { tasksList } = await client.getList({ uid: req.context.uid! })
   res.status(200).json({ tasks: tasksList })
 }))
 

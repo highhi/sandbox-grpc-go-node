@@ -3,8 +3,8 @@ import { TasksClient } from '../protobuf/tasks_grpc_pb'
 import {
   CreateTaskRequest,
   CreateTaskReply,
-  GetTasksRequest,
-  GetTasksReply,
+  GetTaskListRequest,
+  GetTaskListReply,
   GetTaskReply,
   GetTaskRequest,
   UpdateTaskRequest,
@@ -41,17 +41,17 @@ export const create = (params: CreateTaskRequest.AsObject): Promise<CreateTaskRe
   });
 }
 
-export const get = (params: GetTasksRequest.AsObject): Promise<GetTasksReply.AsObject> => {
-  const request = new GetTasksRequest()
+export const getList = (params: GetTaskListRequest.AsObject): Promise<GetTaskListReply.AsObject> => {
+  const request = new GetTaskListRequest()
   const client = createClient()
 
   request.setUid(params.uid)
 
   return new Promise((resolve, reject) => {
-    client.getTasks(request, (error, response) => {
+    client.getTaskList(request, (error, response) => {
       if (error) {
-        console.error(error);
-        reject({
+        // console.error(error);
+        return reject({
           code: error.code || 500,
           message: error.message || "something went wrong",
         });

@@ -12,8 +12,9 @@ import * as google_protobuf_timestamp_pb from "google-protobuf/google/protobuf/t
 interface ITasksService extends grpc.ServiceDefinition<grpc.UntypedServiceImplementation> {
     createTask: ITasksService_ICreateTask;
     getTask: ITasksService_IGetTask;
-    getTasks: ITasksService_IGetTasks;
+    getTaskList: ITasksService_IGetTaskList;
     updateTask: ITasksService_IUpdateTask;
+    deleteTask: ITasksService_IDeleteTask;
 }
 
 interface ITasksService_ICreateTask extends grpc.MethodDefinition<tasks_pb.CreateTaskRequest, tasks_pb.CreateTaskReply> {
@@ -34,14 +35,14 @@ interface ITasksService_IGetTask extends grpc.MethodDefinition<tasks_pb.GetTaskR
     responseSerialize: grpc.serialize<tasks_pb.GetTaskReply>;
     responseDeserialize: grpc.deserialize<tasks_pb.GetTaskReply>;
 }
-interface ITasksService_IGetTasks extends grpc.MethodDefinition<tasks_pb.GetTasksRequest, tasks_pb.GetTasksReply> {
-    path: "/Tasks/GetTasks";
+interface ITasksService_IGetTaskList extends grpc.MethodDefinition<tasks_pb.GetTaskListRequest, tasks_pb.GetTaskListReply> {
+    path: "/Tasks/GetTaskList";
     requestStream: false;
     responseStream: false;
-    requestSerialize: grpc.serialize<tasks_pb.GetTasksRequest>;
-    requestDeserialize: grpc.deserialize<tasks_pb.GetTasksRequest>;
-    responseSerialize: grpc.serialize<tasks_pb.GetTasksReply>;
-    responseDeserialize: grpc.deserialize<tasks_pb.GetTasksReply>;
+    requestSerialize: grpc.serialize<tasks_pb.GetTaskListRequest>;
+    requestDeserialize: grpc.deserialize<tasks_pb.GetTaskListRequest>;
+    responseSerialize: grpc.serialize<tasks_pb.GetTaskListReply>;
+    responseDeserialize: grpc.deserialize<tasks_pb.GetTaskListReply>;
 }
 interface ITasksService_IUpdateTask extends grpc.MethodDefinition<tasks_pb.UpdateTaskRequest, tasks_pb.UpdateTaskReply> {
     path: "/Tasks/UpdateTask";
@@ -52,14 +53,24 @@ interface ITasksService_IUpdateTask extends grpc.MethodDefinition<tasks_pb.Updat
     responseSerialize: grpc.serialize<tasks_pb.UpdateTaskReply>;
     responseDeserialize: grpc.deserialize<tasks_pb.UpdateTaskReply>;
 }
+interface ITasksService_IDeleteTask extends grpc.MethodDefinition<tasks_pb.DeleteTaskRequest, tasks_pb.DeleteTaskReply> {
+    path: "/Tasks/DeleteTask";
+    requestStream: false;
+    responseStream: false;
+    requestSerialize: grpc.serialize<tasks_pb.DeleteTaskRequest>;
+    requestDeserialize: grpc.deserialize<tasks_pb.DeleteTaskRequest>;
+    responseSerialize: grpc.serialize<tasks_pb.DeleteTaskReply>;
+    responseDeserialize: grpc.deserialize<tasks_pb.DeleteTaskReply>;
+}
 
 export const TasksService: ITasksService;
 
 export interface ITasksServer extends grpc.UntypedServiceImplementation {
     createTask: grpc.handleUnaryCall<tasks_pb.CreateTaskRequest, tasks_pb.CreateTaskReply>;
     getTask: grpc.handleUnaryCall<tasks_pb.GetTaskRequest, tasks_pb.GetTaskReply>;
-    getTasks: grpc.handleUnaryCall<tasks_pb.GetTasksRequest, tasks_pb.GetTasksReply>;
+    getTaskList: grpc.handleUnaryCall<tasks_pb.GetTaskListRequest, tasks_pb.GetTaskListReply>;
     updateTask: grpc.handleUnaryCall<tasks_pb.UpdateTaskRequest, tasks_pb.UpdateTaskReply>;
+    deleteTask: grpc.handleUnaryCall<tasks_pb.DeleteTaskRequest, tasks_pb.DeleteTaskReply>;
 }
 
 export interface ITasksClient {
@@ -69,12 +80,15 @@ export interface ITasksClient {
     getTask(request: tasks_pb.GetTaskRequest, callback: (error: grpc.ServiceError | null, response: tasks_pb.GetTaskReply) => void): grpc.ClientUnaryCall;
     getTask(request: tasks_pb.GetTaskRequest, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: tasks_pb.GetTaskReply) => void): grpc.ClientUnaryCall;
     getTask(request: tasks_pb.GetTaskRequest, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: tasks_pb.GetTaskReply) => void): grpc.ClientUnaryCall;
-    getTasks(request: tasks_pb.GetTasksRequest, callback: (error: grpc.ServiceError | null, response: tasks_pb.GetTasksReply) => void): grpc.ClientUnaryCall;
-    getTasks(request: tasks_pb.GetTasksRequest, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: tasks_pb.GetTasksReply) => void): grpc.ClientUnaryCall;
-    getTasks(request: tasks_pb.GetTasksRequest, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: tasks_pb.GetTasksReply) => void): grpc.ClientUnaryCall;
+    getTaskList(request: tasks_pb.GetTaskListRequest, callback: (error: grpc.ServiceError | null, response: tasks_pb.GetTaskListReply) => void): grpc.ClientUnaryCall;
+    getTaskList(request: tasks_pb.GetTaskListRequest, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: tasks_pb.GetTaskListReply) => void): grpc.ClientUnaryCall;
+    getTaskList(request: tasks_pb.GetTaskListRequest, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: tasks_pb.GetTaskListReply) => void): grpc.ClientUnaryCall;
     updateTask(request: tasks_pb.UpdateTaskRequest, callback: (error: grpc.ServiceError | null, response: tasks_pb.UpdateTaskReply) => void): grpc.ClientUnaryCall;
     updateTask(request: tasks_pb.UpdateTaskRequest, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: tasks_pb.UpdateTaskReply) => void): grpc.ClientUnaryCall;
     updateTask(request: tasks_pb.UpdateTaskRequest, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: tasks_pb.UpdateTaskReply) => void): grpc.ClientUnaryCall;
+    deleteTask(request: tasks_pb.DeleteTaskRequest, callback: (error: grpc.ServiceError | null, response: tasks_pb.DeleteTaskReply) => void): grpc.ClientUnaryCall;
+    deleteTask(request: tasks_pb.DeleteTaskRequest, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: tasks_pb.DeleteTaskReply) => void): grpc.ClientUnaryCall;
+    deleteTask(request: tasks_pb.DeleteTaskRequest, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: tasks_pb.DeleteTaskReply) => void): grpc.ClientUnaryCall;
 }
 
 export class TasksClient extends grpc.Client implements ITasksClient {
@@ -85,10 +99,13 @@ export class TasksClient extends grpc.Client implements ITasksClient {
     public getTask(request: tasks_pb.GetTaskRequest, callback: (error: grpc.ServiceError | null, response: tasks_pb.GetTaskReply) => void): grpc.ClientUnaryCall;
     public getTask(request: tasks_pb.GetTaskRequest, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: tasks_pb.GetTaskReply) => void): grpc.ClientUnaryCall;
     public getTask(request: tasks_pb.GetTaskRequest, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: tasks_pb.GetTaskReply) => void): grpc.ClientUnaryCall;
-    public getTasks(request: tasks_pb.GetTasksRequest, callback: (error: grpc.ServiceError | null, response: tasks_pb.GetTasksReply) => void): grpc.ClientUnaryCall;
-    public getTasks(request: tasks_pb.GetTasksRequest, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: tasks_pb.GetTasksReply) => void): grpc.ClientUnaryCall;
-    public getTasks(request: tasks_pb.GetTasksRequest, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: tasks_pb.GetTasksReply) => void): grpc.ClientUnaryCall;
+    public getTaskList(request: tasks_pb.GetTaskListRequest, callback: (error: grpc.ServiceError | null, response: tasks_pb.GetTaskListReply) => void): grpc.ClientUnaryCall;
+    public getTaskList(request: tasks_pb.GetTaskListRequest, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: tasks_pb.GetTaskListReply) => void): grpc.ClientUnaryCall;
+    public getTaskList(request: tasks_pb.GetTaskListRequest, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: tasks_pb.GetTaskListReply) => void): grpc.ClientUnaryCall;
     public updateTask(request: tasks_pb.UpdateTaskRequest, callback: (error: grpc.ServiceError | null, response: tasks_pb.UpdateTaskReply) => void): grpc.ClientUnaryCall;
     public updateTask(request: tasks_pb.UpdateTaskRequest, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: tasks_pb.UpdateTaskReply) => void): grpc.ClientUnaryCall;
     public updateTask(request: tasks_pb.UpdateTaskRequest, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: tasks_pb.UpdateTaskReply) => void): grpc.ClientUnaryCall;
+    public deleteTask(request: tasks_pb.DeleteTaskRequest, callback: (error: grpc.ServiceError | null, response: tasks_pb.DeleteTaskReply) => void): grpc.ClientUnaryCall;
+    public deleteTask(request: tasks_pb.DeleteTaskRequest, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: tasks_pb.DeleteTaskReply) => void): grpc.ClientUnaryCall;
+    public deleteTask(request: tasks_pb.DeleteTaskRequest, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: tasks_pb.DeleteTaskReply) => void): grpc.ClientUnaryCall;
 }

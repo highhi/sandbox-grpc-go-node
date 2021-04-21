@@ -7,7 +7,7 @@ option go_package = "github.com/highhi/sandbox-grpc-go-node/app/proto";
 service Tasks {
   rpc CreateTask (CreateTaskRequest) returns (CreateTaskReply) {}
   rpc GetTask (GetTaskRequest) returns (GetTaskReply) {}
-  rpc GetTasks (GetTasksRequest) returns (GetTasksReply) {}
+  rpc GetTaskList (GetTaskListRequest) returns (GetTaskListReply) {}
   rpc UpdateTask (UpdateTaskRequest) returns (UpdateTaskReply) {}
   rpc DeleteTask (DeleteTaskRequest) returns (DeleteTaskReply) {}
 }
@@ -30,12 +30,12 @@ message CreateTaskRequest {
 message CreateTaskReply {
 }
 
-message GetTasksRequest {
+message GetTaskListRequest {
   string uid = 1;
 }
 
 
-message GetTasksReply {
+message GetTaskListReply {
   repeated Task Tasks = 1;
 }
 

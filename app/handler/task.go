@@ -36,12 +36,12 @@ func (h *taskHandler) CreateTask(ctx context.Context, in *pb.CreateTaskRequest) 
 	return &pb.CreateTaskReply{}, nil
 }
 
-func (h *taskHandler) GetTasks(ctx context.Context, in *pb.GetTasksRequest) (*pb.GetTasksReply, error) {
+func (h *taskHandler) GetTaskList(ctx context.Context, in *pb.GetTaskListRequest) (*pb.GetTaskListReply, error) {
 	tasks, err := h.r.List(in.GetUid())
 	if err != nil {
 		return nil, err
 	}
-	return &pb.GetTasksReply{Tasks: task.ToPBList(tasks)}, nil
+	return &pb.GetTaskListReply{Tasks: task.ToPBList(tasks)}, nil
 }
 
 func (h *taskHandler) GetTask(ctx context.Context, in *pb.GetTaskRequest) (*pb.GetTaskReply, error) {

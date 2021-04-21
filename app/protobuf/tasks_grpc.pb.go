@@ -24,7 +24,7 @@ const _ = grpc.SupportPackageIsVersion7
 type TasksClient interface {
 	CreateTask(ctx context.Context, in *CreateTaskRequest, opts ...grpc.CallOption) (*CreateTaskReply, error)
 	GetTask(ctx context.Context, in *GetTaskRequest, opts ...grpc.CallOption) (*GetTaskReply, error)
-	GetTasks(ctx context.Context, in *GetTasksRequest, opts ...grpc.CallOption) (*GetTasksReply, error)
+	GetTaskList(ctx context.Context, in *GetTaskListRequest, opts ...grpc.CallOption) (*GetTaskListReply, error)
 	UpdateTask(ctx context.Context, in *UpdateTaskRequest, opts ...grpc.CallOption) (*UpdateTaskReply, error)
 	DeleteTask(ctx context.Context, in *DeleteTaskRequest, opts ...grpc.CallOption) (*DeleteTaskReply, error)
 }
@@ -55,9 +55,9 @@ func (c *tasksClient) GetTask(ctx context.Context, in *GetTaskRequest, opts ...g
 	return out, nil
 }
 
-func (c *tasksClient) GetTasks(ctx context.Context, in *GetTasksRequest, opts ...grpc.CallOption) (*GetTasksReply, error) {
-	out := new(GetTasksReply)
-	err := c.cc.Invoke(ctx, "/Tasks/GetTasks", in, out, opts...)
+func (c *tasksClient) GetTaskList(ctx context.Context, in *GetTaskListRequest, opts ...grpc.CallOption) (*GetTaskListReply, error) {
+	out := new(GetTaskListReply)
+	err := c.cc.Invoke(ctx, "/Tasks/GetTaskList", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -88,7 +88,7 @@ func (c *tasksClient) DeleteTask(ctx context.Context, in *DeleteTaskRequest, opt
 type TasksServer interface {
 	CreateTask(context.Context, *CreateTaskRequest) (*CreateTaskReply, error)
 	GetTask(context.Context, *GetTaskRequest) (*GetTaskReply, error)
-	GetTasks(context.Context, *GetTasksRequest) (*GetTasksReply, error)
+	GetTaskList(context.Context, *GetTaskListRequest) (*GetTaskListReply, error)
 	UpdateTask(context.Context, *UpdateTaskRequest) (*UpdateTaskReply, error)
 	DeleteTask(context.Context, *DeleteTaskRequest) (*DeleteTaskReply, error)
 	mustEmbedUnimplementedTasksServer()
@@ -104,8 +104,8 @@ func (UnimplementedTasksServer) CreateTask(context.Context, *CreateTaskRequest) 
 func (UnimplementedTasksServer) GetTask(context.Context, *GetTaskRequest) (*GetTaskReply, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetTask not implemented")
 }
-func (UnimplementedTasksServer) GetTasks(context.Context, *GetTasksRequest) (*GetTasksReply, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetTasks not implemented")
+func (UnimplementedTasksServer) GetTaskList(context.Context, *GetTaskListRequest) (*GetTaskListReply, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetTaskList not implemented")
 }
 func (UnimplementedTasksServer) UpdateTask(context.Context, *UpdateTaskRequest) (*UpdateTaskReply, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateTask not implemented")
@@ -162,20 +162,20 @@ func _Tasks_GetTask_Handler(srv interface{}, ctx context.Context, dec func(inter
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Tasks_GetTasks_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetTasksRequest)
+func _Tasks_GetTaskList_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetTaskListRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(TasksServer).GetTasks(ctx, in)
+		return srv.(TasksServer).GetTaskList(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/Tasks/GetTasks",
+		FullMethod: "/Tasks/GetTaskList",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(TasksServer).GetTasks(ctx, req.(*GetTasksRequest))
+		return srv.(TasksServer).GetTaskList(ctx, req.(*GetTaskListRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -232,8 +232,8 @@ var Tasks_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _Tasks_GetTask_Handler,
 		},
 		{
-			MethodName: "GetTasks",
-			Handler:    _Tasks_GetTasks_Handler,
+			MethodName: "GetTaskList",
+			Handler:    _Tasks_GetTaskList_Handler,
 		},
 		{
 			MethodName: "UpdateTask",
