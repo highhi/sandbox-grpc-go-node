@@ -6,21 +6,9 @@ option go_package = "github.com/highhi/sandbox-grpc-go-node/app/proto";
 
 service Tasks {
   rpc CreateTask (CreateTaskRequest) returns (CreateTaskReply) {}
+  rpc GetTask (GetTaskRequest) returns (GetTaskReply) {}
   rpc GetTasks (GetTasksRequest) returns (GetTasksReply) {}
-}
-
-message CreateTaskRequest {
-  string uid = 1;
-  string title = 2;
-  string content = 3;
-}
-
-message CreateTaskReply {
-}
-
-
-message GetTasksRequest {
-  string uid = 1;
+  rpc UpdateTask (UpdateTaskRequest) returns (UpdateTaskReply) {}
 }
 
 message Task {
@@ -32,6 +20,39 @@ message Task {
   google.protobuf.Timestamp UpdatedAt = 6;
 }
 
+message CreateTaskRequest {
+  string uid = 1;
+  string title = 2;
+  string content = 3;
+}
+
+message CreateTaskReply {
+}
+
+message GetTasksRequest {
+  string uid = 1;
+}
+
+
 message GetTasksReply {
   repeated Task Tasks = 1;
+}
+
+message GetTaskRequest {
+  int32 ID = 1;
+  string UID = 2;
+}
+
+message GetTaskReply {
+  Task Task = 1;
+}
+
+message UpdateTaskRequest {
+  int32 ID = 1;
+  string UID = 2;
+  string Title = 3;
+  string Content = 4;
+}
+
+message UpdateTaskReply {
 }

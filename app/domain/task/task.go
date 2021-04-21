@@ -16,7 +16,7 @@ type Task struct {
 	UpdatedAt time.Time `db:"updated_at"`
 }
 
-func (t *Task) toPB() *pb.Task {
+func (t *Task) ToPB() *pb.Task {
 	return &pb.Task{
 		ID:        t.ID,
 		UID:       t.UID,
@@ -31,7 +31,7 @@ func ToPBList(tasks []*Task) []*pb.Task {
 	var pbTasks []*pb.Task
 
 	for _, t := range tasks {
-		pbTasks = append(pbTasks, t.toPB())
+		pbTasks = append(pbTasks, t.ToPB())
 	}
 
 	return pbTasks

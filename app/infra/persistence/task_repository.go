@@ -44,3 +44,32 @@ func (r *TaskRepository) List(uid string) ([]*task.Task, error) {
 
 	return tasks, nil
 }
+
+func (r *TaskRepository) GetById(uid string, id int32) (*task.Task, error) {
+	t := &task.Task{}
+	query := `SELECT * FROM tasks WHERE uid=$1 AND id=$2`
+	if err := r.db.Get(t, query, uid, id); err != nil {
+		return nil, err
+	}
+	return t, nil
+}
+
+func (r *TaskRepository) Update(uid string, id int32, title string, content string) error {
+	query := `
+	UPDATE tasks
+	SET title = :title, content = :content
+	WHERE uid = :uid AND id = :id;
+	`
+	_, err := r.db.NamedExec(query, map[string]interface{}{
+		uid:     uid,
+		"id":    id,
+		title:   title,
+		content: content,
+	})
+
+	if err != nil {
+		return err
+	}
+
+	return nil
+}

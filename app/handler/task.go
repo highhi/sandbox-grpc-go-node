@@ -43,3 +43,19 @@ func (h *taskHandler) GetTasks(ctx context.Context, in *pb.GetTasksRequest) (*pb
 	}
 	return &pb.GetTasksReply{Tasks: task.ToPBList(tasks)}, nil
 }
+
+func (h *taskHandler) GetTask(ctx context.Context, in *pb.GetTaskRequest) (*pb.GetTaskReply, error) {
+	task, err := h.r.GetById(in.GetUID(), in.GetID())
+	if err != nil {
+		return nil, err
+	}
+	return &pb.GetTaskReply{Task: task.ToPB()}, nil
+}
+
+func (h *taskHandler) UpdateTask(ctx context.Context, in *pb.UpdateTaskRequest) (*pb.UpdateTaskReply, error) {
+	err := h.r.Update(in.GetUID(), in.GetID(), in.GetTitle(), in.GetContent())
+	if err != nil {
+		return nil, err
+	}
+	return &pb.UpdateTaskReply{}, nil
+}
