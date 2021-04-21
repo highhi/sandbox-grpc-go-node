@@ -59,3 +59,11 @@ func (h *taskHandler) UpdateTask(ctx context.Context, in *pb.UpdateTaskRequest) 
 	}
 	return &pb.UpdateTaskReply{}, nil
 }
+
+func (h *taskHandler) DeleteTask(ctx context.Context, in *pb.DeleteTaskRequest) (*pb.DeleteTaskReply, error) {
+	err := h.r.Delete(in.GetUID(), in.GetID())
+	if err != nil {
+		return nil, err
+	}
+	return &pb.DeleteTaskReply{}, nil
+}

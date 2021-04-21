@@ -9,6 +9,7 @@ service Tasks {
   rpc GetTask (GetTaskRequest) returns (GetTaskReply) {}
   rpc GetTasks (GetTasksRequest) returns (GetTasksReply) {}
   rpc UpdateTask (UpdateTaskRequest) returns (UpdateTaskReply) {}
+  rpc DeleteTask (DeleteTaskRequest) returns (DeleteTaskReply) {}
 }
 
 message Task {
@@ -55,4 +56,12 @@ message UpdateTaskRequest {
 }
 
 message UpdateTaskReply {
+}
+
+message DeleteTaskRequest {
+  int32 ID = 1;
+  string UID = 2;
+}
+
+message DeleteTaskReply {
 }
