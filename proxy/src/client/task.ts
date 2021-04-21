@@ -1,6 +1,15 @@
 import { credentials } from '@grpc/grpc-js'
 import { TasksClient } from '../protobuf/tasks_grpc_pb'
-import { CreateTaskRequest, CreateTaskReply, GetTasksRequest, GetTasksReply } from '../protobuf/tasks_pb'
+import {
+  CreateTaskRequest,
+  CreateTaskReply,
+  GetTasksRequest,
+  GetTasksReply,
+  GetTaskReply,
+  GetTaskRequest,
+  UpdateTaskRequest,
+  UpdateTaskReply
+} from '../protobuf/tasks_pb'
 
 const createClient = (): TasksClient => {
   return new TasksClient(
@@ -40,6 +49,52 @@ export const get = (params: GetTasksRequest.AsObject): Promise<GetTasksReply.AsO
 
   return new Promise((resolve, reject) => {
     client.getTasks(request, (error, response) => {
+      if (error) {
+        console.error(error);
+        reject({
+          code: error.code || 500,
+          message: error.message || "something went wrong",
+        });
+      }
+
+      return resolve(response.toObject());
+    });
+  });
+}
+
+export const getById = (params: GetTaskRequest.AsObject): Promise<GetTaskReply.AsObject> => {
+  const request = new GetTaskRequest()
+  const client = createClient()
+
+  request.setUid(params.uid)
+  request.setId(params.id)
+
+  return new Promise((resolve, reject) => {
+    client.getTask(request, (error, response) => {
+      if (error) {
+        console.error(error);
+        reject({
+          code: error.code || 500,
+          message: error.message || "something went wrong",
+        });
+      }
+
+      return resolve(response.toObject());
+    });
+  });
+}
+
+export const update = (params: UpdateTaskRequest.AsObject): Promise<UpdateTaskReply.AsObject> => {
+  const request = new UpdateTaskRequest()
+  const client = createClient()
+
+  request.setUid(params.uid)
+  request.setId(params.id)
+  request.setTitle(params.title)
+  request.setContent(params.content)
+
+  return new Promise((resolve, reject) => {
+    client.getTask(request, (error, response) => {
       if (error) {
         console.error(error);
         reject({
