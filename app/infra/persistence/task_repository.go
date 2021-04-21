@@ -61,10 +61,10 @@ func (r *TaskRepository) Update(uid string, id int32, title string, content stri
 	WHERE uid = :uid AND id = :id;
 	`
 	_, err := r.db.NamedExec(query, map[string]interface{}{
-		uid:     uid,
-		"id":    id,
-		title:   title,
-		content: content,
+		"uid":     uid,
+		"id":      id,
+		"title":   title,
+		"content": content,
 	})
 
 	if err != nil {

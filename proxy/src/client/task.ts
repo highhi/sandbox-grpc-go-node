@@ -94,10 +94,9 @@ export const update = (params: UpdateTaskRequest.AsObject): Promise<UpdateTaskRe
   request.setContent(params.content)
 
   return new Promise((resolve, reject) => {
-    client.getTask(request, (error, response) => {
+    client.updateTask(request, (error, response) => {
       if (error) {
-        console.error(error);
-        reject({
+        return reject({
           code: error.code || 500,
           message: error.message || "something went wrong",
         });
