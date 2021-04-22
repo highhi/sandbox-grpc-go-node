@@ -13,7 +13,7 @@ service Tasks {
 }
 
 message Task {
-  int32 ID = 1;
+  uint32 ID = 1;
   string UID = 2;
   string Title = 3;
   string Content = 4;
@@ -40,7 +40,7 @@ message GetTaskListReply {
 }
 
 message GetTaskRequest {
-  int32 ID = 1;
+  uint32 ID = 1;
   string UID = 2;
 }
 
@@ -49,7 +49,7 @@ message GetTaskReply {
 }
 
 message UpdateTaskRequest {
-  int32 ID = 1;
+  uint32 ID = 1;
   string UID = 2;
   string Title = 3;
   string Content = 4;
@@ -59,7 +59,7 @@ message UpdateTaskReply {
 }
 
 message DeleteTaskRequest {
-  int32 ID = 1;
+  uint32 ID = 1;
   string UID = 2;
 }
 

@@ -8,7 +8,7 @@ import (
 )
 
 type Task struct {
-	ID        int32  `db:"id"`
+	ID        uint32 `db:"id"`
 	UID       string `db:"uid"`
 	Title     string
 	Content   string
