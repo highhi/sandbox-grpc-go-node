@@ -8,7 +8,9 @@ import {
   GetTaskReply,
   GetTaskRequest,
   UpdateTaskRequest,
-  UpdateTaskReply
+  UpdateTaskReply,
+  DeleteTaskRequest,
+  DeleteTaskReply
 } from '../protobuf/tasks_pb'
 
 const createClient = (): TasksClient => {
@@ -95,6 +97,27 @@ export const update = (params: UpdateTaskRequest.AsObject): Promise<UpdateTaskRe
 
   return new Promise((resolve, reject) => {
     client.updateTask(request, (error, response) => {
+      if (error) {
+        return reject({
+          code: error.code || 500,
+          message: error.message || "something went wrong",
+        });
+      }
+
+      return resolve(response.toObject());
+    });
+  });
+}
+
+export const destroy = (params: DeleteTaskRequest.AsObject): Promise<DeleteTaskReply.AsObject> => {
+  const request = new DeleteTaskRequest()
+  const client = createClient()
+
+  request.setUid(params.uid)
+  request.setId(params.id)
+
+  return new Promise((resolve, reject) => {
+    client.deleteTask(request, (error, response) => {
       if (error) {
         return reject({
           code: error.code || 500,

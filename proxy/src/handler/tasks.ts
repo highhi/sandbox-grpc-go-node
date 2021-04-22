@@ -40,6 +40,14 @@ tasksHandler.post('/create', wrap(async (req, res) => {
   res.status(200).end()
 }))
 
+tasksHandler.post('/delete/:id', wrap(async (req, res) => {
+  const { uid } = req.context
+  const { id } = req.params
+
+  await client.destroy({ uid: uid!, id: Number(id) })
+  res.status(200).end()
+}))
+
 async function fetchTaskById(req: Request): Promise<Task.AsObject | undefined> {
   const { uid } = req.context
   const { id } = req.params

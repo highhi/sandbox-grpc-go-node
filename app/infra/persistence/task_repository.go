@@ -77,8 +77,8 @@ func (r *TaskRepository) Update(uid string, id int32, title string, content stri
 func (r *TaskRepository) Delete(uid string, id int32) error {
 	query := ` DELETE FROM ONLY tasks WHERE uid = :uid AND id = :id;`
 	_, err := r.db.NamedExec(query, map[string]interface{}{
-		uid:  uid,
-		"id": id,
+		"uid": uid,
+		"id":  id,
 	})
 
 	if err != nil {
