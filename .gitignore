@@ -157,3 +157,4 @@ temp/
 .volumes
 
 service-account.json
+.envrc
