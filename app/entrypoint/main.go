@@ -1,11 +1,13 @@
 package main
 
 import (
+	"flag"
 	"log"
 	"net"
 
 	grpc_middleware "github.com/grpc-ecosystem/go-grpc-middleware"
 	grpc_zap "github.com/grpc-ecosystem/go-grpc-middleware/logging/zap"
+	"github.com/highhi/sandbox-grpc-go-node/app/config"
 	"github.com/highhi/sandbox-grpc-go-node/app/handler"
 	"github.com/highhi/sandbox-grpc-go-node/app/infra/persistence"
 	"go.uber.org/zap"
@@ -14,6 +16,10 @@ import (
 )
 
 func main() {
+	m := flag.String("mode", "local", "environment, dev or prod or ...")
+	flag.Parse()
+	config.Conf = config.NewConfig(*m)
+
 	lis, err := net.Listen("tcp", ":8080")
 
 	if err != nil {
@@ -34,7 +40,7 @@ func main() {
 
 	handler.Initialize(s, persistence.NewDB())
 
-	log.Println("起動")
+	log.Println("server start!")
 
 	reflection.Register(s)
 

@@ -1,7 +1,6 @@
 package persistence
 
 import (
-	"flag"
 	"fmt"
 	"log"
 
@@ -11,10 +10,6 @@ import (
 )
 
 func NewDB() *sqlx.DB {
-	m := flag.String("mode", "local", "environment, dev or prod or ...")
-	flag.Parse()
-	config.Conf = config.NewConfig(*m)
-
 	dsn := fmt.Sprintf(
 		"host=%s port=%s user=%s password=%s dbname=%s sslmode=%s TimeZone=Asia/Tokyo",
 		config.Conf.DB.Hostname,
