@@ -54,18 +54,13 @@ func (r *TaskRepository) GetById(uid string, id uint32) (*task.Task, error) {
 	return t, nil
 }
 
-func (r *TaskRepository) Update(uid string, id uint32, title string, content string) error {
+func (r *TaskRepository) Update(t *task.Task) error {
 	query := `
 	UPDATE tasks
 	SET title = :title, content = :content
 	WHERE uid = :uid AND id = :id;
 	`
-	_, err := r.db.NamedExec(query, map[string]interface{}{
-		"uid":     uid,
-		"id":      id,
-		"title":   title,
-		"content": content,
-	})
+	_, err := r.db.NamedExec(query, t)
 
 	if err != nil {
 		return err
@@ -74,12 +69,9 @@ func (r *TaskRepository) Update(uid string, id uint32, title string, content str
 	return nil
 }
 
-func (r *TaskRepository) Delete(uid string, id uint32) error {
+func (r *TaskRepository) Delete(t *task.Task) error {
 	query := ` DELETE FROM ONLY tasks WHERE uid = :uid AND id = :id;`
-	_, err := r.db.NamedExec(query, map[string]interface{}{
-		"uid": uid,
-		"id":  id,
-	})
+	_, err := r.db.NamedExec(query, t)
 
 	if err != nil {
 		return err

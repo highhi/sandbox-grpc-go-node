@@ -53,7 +53,16 @@ func (h *taskHandler) GetTask(ctx context.Context, in *pb.GetTaskRequest) (*pb.G
 }
 
 func (h *taskHandler) UpdateTask(ctx context.Context, in *pb.UpdateTaskRequest) (*pb.UpdateTaskReply, error) {
-	err := h.r.Update(in.GetUID(), in.GetID(), in.GetTitle(), in.GetContent())
+	task, err := h.r.GetById(in.GetUID(), in.GetID())
+
+	if err != nil {
+		return nil, err
+	}
+
+	task.Title = in.GetTitle()
+	task.Content = in.GetContent()
+
+	err = h.r.Update(task)
 	if err != nil {
 		return nil, err
 	}
@@ -61,6 +70,11 @@ func (h *taskHandler) UpdateTask(ctx context.Context, in *pb.UpdateTaskRequest) 
 }
 
 func (h *taskHandler) DeleteTask(ctx context.Context, in *pb.DeleteTaskRequest) (*pb.DeleteTaskReply, error) {
+	task, err := h.r.GetById(in.GetUID(), in.GetID())
+
+	if err != nil {
+		return nil, err
+	}
 	err := h.r.Delete(in.GetUID(), in.GetID())
 	if err != nil {
 		return nil, err

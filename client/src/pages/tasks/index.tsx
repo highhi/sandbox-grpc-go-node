@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import Layout from '../../components/Layout'
 import { useCallback, useEffect, useState, memo } from 'react'
 import { useAppContext } from '../../hooks/appContext'
@@ -27,7 +28,7 @@ const DeleteButton: React.FC<DeleteButtonProps> = memo((props) => {
       })
   }, [props.deletedCallback])
 
-  return <li key={props.id}><button type="button" onClick={handleClick}>削除</button> {props.title}</li>
+  return <button type="button" onClick={handleClick}>削除</button>
 })
 
 const Tasks: React.FC = () => {
@@ -52,7 +53,11 @@ const Tasks: React.FC = () => {
       <h1>Task List</h1>
       <ul>
         {tasks.map((task) => {
-          return <DeleteButton key={task.id} id={task.id} title={task.title} deletedCallback={deleteItem} />
+          return <li key={task.id}>
+            <DeleteButton key={task.id} id={task.id} title={task.title} deletedCallback={deleteItem} />
+            <Link href={`/tasks/edit/${encodeURIComponent(task.id)}`}>編集</Link>
+            {task.title}
+          </li>
         })}
       </ul>
     </Layout>
