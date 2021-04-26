@@ -21,7 +21,7 @@ func newTaskHandler(r *persistence.TaskRepository) *taskHandler {
 func (h *taskHandler) CreateTask(ctx context.Context, in *pb.CreateTaskRequest) (*pb.CreateTaskReply, error) {
 	now := time.Now()
 
-	err := h.r.Create(task.Task{
+	err := h.r.Create(&task.Task{
 		UID:       in.GetUid(),
 		Title:     in.GetTitle(),
 		Content:   in.GetContent(),
@@ -75,7 +75,8 @@ func (h *taskHandler) DeleteTask(ctx context.Context, in *pb.DeleteTaskRequest) 
 	if err != nil {
 		return nil, err
 	}
-	err := h.r.Delete(in.GetUID(), in.GetID())
+
+	err = h.r.Delete(task)
 	if err != nil {
 		return nil, err
 	}

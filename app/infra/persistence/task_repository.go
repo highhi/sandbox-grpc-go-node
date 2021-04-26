@@ -15,7 +15,7 @@ func NewTaskRepository(db *sqlx.DB) *TaskRepository {
 	return &TaskRepository{db: db}
 }
 
-func (r *TaskRepository) Create(t task.Task) error {
+func (r *TaskRepository) Create(t *task.Task) error {
 	query := `
 	INSERT INTO tasks
 		(uid, title, content, created_at, updated_at)
