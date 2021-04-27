@@ -6,7 +6,7 @@ import (
 
 	"github.com/highhi/sandbox-grpc-go-node/app/domain/task"
 	"github.com/highhi/sandbox-grpc-go-node/app/infra/persistence"
-	pb "github.com/highhi/sandbox-grpc-go-node/app/protobuf"
+	pb "github.com/highhi/sandbox-grpc-go-node/app/pb"
 )
 
 type taskHandler struct {

@@ -1,9 +1,16 @@
 # Makefile
-COMMAND=docker-compose exec app protoc --go_out=./protobuf --go_opt=paths=source_relative --go-grpc_out=./protobuf --go-grpc_opt=paths=source_relative --proto_path=./proto ./proto/*.proto
+COMMAND=protoc \
+	--go_out=./pb \
+	--go_opt=paths=source_relative \
+	--go-grpc_out=./pb \
+	--go-grpc_opt=paths=source_relative \
+	--proto_path=${GOPATH}/src \
+	--proto_path=./proto \
+	./proto/*.proto
 
 .PHONY: protogen
 protogen:
-		rm -rf ./protobuf && mkdir -p ./protobuf
+		rm -rf ./pb && mkdir -p ./pb
 		$(COMMAND)
 
 .PHONY: health

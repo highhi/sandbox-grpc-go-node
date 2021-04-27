@@ -3,7 +3,7 @@ package task
 import (
 	"time"
 
-	pb "github.com/highhi/sandbox-grpc-go-node/app/protobuf"
+	pb "github.com/highhi/sandbox-grpc-go-node/app/pb"
 	"google.golang.org/protobuf/types/known/timestamppb"
 )
 

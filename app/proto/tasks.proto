@@ -1,8 +1,9 @@
 syntax = "proto3";
+package taskpb;
+option go_package = "github.com/highhi/sandbox-grpc-go-node/app/pb";
 
+import "github.com/mwitkow/go-proto-validators/validator.proto";
 import "google/protobuf/timestamp.proto";
-
-option go_package = "github.com/highhi/sandbox-grpc-go-node/app/proto";
 
 service Tasks {
   rpc CreateTask (CreateTaskRequest) returns (CreateTaskReply) {}
